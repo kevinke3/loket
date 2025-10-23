@@ -1,0 +1,10 @@
+[
+  {
+    "id": 1,
+    "name": "Emily Rodriguez",
+    "age": 32,
+    "found_date": "2024-01-05",
+    "reunited_with": "Family in Miami",
+    "photo_url": "/static/images/default-avatar.png"
+  }
+]

@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "Sarah Johnson",
+    "age": 28,
+    "gender": "Female",
+    "last_seen": "Central Park, New York",
+    "last_seen_date": "2024-01-15",
+    "region": "Northeast",
+    "description": "Last seen wearing blue jeans and a red jacket. Brown hair, green eyes.",
+    "contact_name": "Michael Johnson",
+    "contact_phone": "(555) 123-4567",
+    "contact_email": "m.johnson@email.com",
+    "photo_url": "/static/images/default-avatar.png",
+    "date_reported": "2024-01-16"
+  },
+  {
+    "id": 2,
+    "name": "David Chen",
+    "age": 45,
+    "gender": "Male",
+    "last_seen": "Downtown Seattle",
+    "last_seen_date": "2024-01-10",
+    "region": "Northwest",
+    "description": "Height 6'2\", black hair, glasses. Last seen in business attire.",
+    "contact_name": "Lisa Chen",
+    "contact_phone": "(555) 987-6543",
+    "contact_email": "l.chen@email.com",
+    "photo_url": "/static/images/default-avatar.png",
+    "date_reported": "2024-01-11"
+  }
+]
