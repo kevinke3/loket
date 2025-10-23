@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block title %}Browse Cases - Loket{% endblock %}
+
+{% block content %}
+<section class="browse-section">
+    <div class="container">
+        <div class="browse-header">
+            <h1>Browse Missing Persons Cases</h1>
+            <p>Search through our database of missing persons cases</p>
+        </div>
+        
+        <div class="search-filters">
+            <div class="search-container">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Search by name or description...">
+                    <button id="searchBtn"><i class="fas fa-search"></i></button>
+                </div>
+                <select id="regionFilter">
+                    <option value="">All Regions</option>
+                    {% for region in regions %}
+                        <option value="{{ region }}">{{ region }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        
+        <div id="searchResults" class="search-results">
+            <div class="cases-grid">
+                {% for person in missing_persons %}
+                <div class="case-card" data-person-id="{{ person.id }}">
+                    <div class="case-image">
+                        <img src="{{ person.photo_url }}" alt="{{ person.name }}">
+                    </div>
+                    <div class="case-info">
+                        <h3>{{ person.name }}</h3>
+                        <p><strong>Age:</strong> {{ person.age }}</p>
+                        <p><strong>Last Seen:</strong> {{ person.last_seen }}</p>
+                        <p><strong>Date:</strong> {{ person.last_seen_date }}</p>
+                        <p><strong>Reported by:</strong> {{ person.reporter_name }}</p>
+                        <button class="btn-case-details" data-person-id="{{ person.id }}">View Details</button>
+                        {% if is_logged_in %}
+                        <button class="btn-report-sighting" data-person-id="{{ person.id }}">Report Sighting</button>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sighting Report Modal -->
+<div id="sightingModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>Report a Sighting</h2>
+        <form id="sightingForm">
+            <input type="hidden" id="sightingPersonId">
+            <div class="form-group">
+                <label for="sighting_location">Where did you see this person? *</label>
+                <input type="text" id="sighting_location" required>
+            </div>
+            <div class="form-group">
+                <label for="sighting_date">When did you see them? *</label>
+                <input type="datetime-local" id="sighting_date" required>
+            </div>
+            <div class="form-group">
+                <label for="sighting_details">Additional Details</label>
+                <textarea id="sighting_details" rows="4" placeholder="What were they wearing? Who were they with? Any other important details..."></textarea>
+            </div>
+            <div class="form-group">
+                <label for="reporter_name">Your Name *</label>
+                <input type="text" id="reporter_name" required value="{{ current_user.name if current_user }}">
+            </div>
+            <div class="form-group">
+                <label for="reporter_contact">Your Contact Information *</label>
+                <input type="text" id="reporter_contact" required 
+                       value="{{ current_user.phone if current_user else '' }}" 
+                       placeholder="Phone or email">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit Sighting Report</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
